@@ -12,6 +12,10 @@
   (list 'v name))
 
 
+(define (make-edge-wt wt)
+  (list 'w wt))
+
+
 (define vertex-name cadr)
 
 
@@ -24,6 +28,10 @@
 
 (define (edge-to edge)
   (car (cdaddr edge)))
+
+
+(define (edge-wt edge)
+  (car (cdaddr (cdr edge))))
 
 
 (define (vertex-neighbors graph vertex)
@@ -44,6 +52,18 @@
                  result)))))
 
 
+(define (get-edge-wt graph u v)
+  (let loop ((edges (graph-edges graph)))
+    (cond ((null? edges) result)
+	  ((and (equal? (edge-from (car edges))
+		       u)
+	       (equal? (edge-to (car edges))
+		       v))
+	   (edge-wt (car edges)))
+	  (else
+	    (loop (cdr edges))))))
+
+
 (define (remove-duplicates lst)
   (cond ((null? lst) '())
         ((member (car lst) (cdr lst))
@@ -58,6 +78,6 @@
               (map (lambda (edge-descp)
                      (make-edge (make-vertex (car edge-descp))
                                 (make-vertex (cadr edge-descp))
-				(caddr edge-descp)))
+				(make-edge-wt (caddr edge-descp))))
                    edges)))
 
