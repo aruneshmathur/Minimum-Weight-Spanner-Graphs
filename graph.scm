@@ -57,7 +57,7 @@
 
 (define (get-edge-wt graph u v)
   (let loop ((edges (graph-edges graph)))
-    (cond ((null? edges) result)
+    (cond ((null? edges) '())
 	  ((and (equal? (edge-from (car edges))
 		       u)
 	       (equal? (edge-to (car edges))
