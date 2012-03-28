@@ -12,6 +12,9 @@
   (list 'v name))
 
 
+(define vertex cadr)
+
+
 (define (make-edge-wt wt)
   (list 'w wt))
 
