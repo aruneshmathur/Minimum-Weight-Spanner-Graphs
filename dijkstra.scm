@@ -64,7 +64,9 @@
 				    (vertex x)
 				    (get-edge-wt g 
 						 cur_vertex 
-						 (vertex x))))) 
+						 (vertex x)))
+
+			     x)) 
 	       neighbors))))
 
 
