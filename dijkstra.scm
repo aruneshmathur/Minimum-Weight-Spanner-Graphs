@@ -1,6 +1,6 @@
 (load "graph.scm")
 
-(define temp-val cadadr)
+(define dist-val cadadr)
 
 
 (define vertex-dist-list cadar)
@@ -52,27 +52,44 @@
   (cond
     ((null? neighbors) '())
     ((null? dist_list) '())
-    ((> (get-dist-list dist_list (vertex (car neighbors)))
-	(+ (get-dist-list dist_list 
-			  cur_vertex)
-	   (get-edge-wt g 
-			cur_vertex 
-			(vertex (car neighbors)))))
-     (begin
-       (relax dist_list 
-	      cur_vertex 
-	      (vertex (car neighbors))
-	      (get-edge-wt g 
-			   cur_vertex 
-			   (vertex (car neighbors))))
-       (update g 
-	       dist_list
-	       cur_vertex
-	       (cdr neighbors))))
-    (else (update g 
-		  dist_list 
-		  cur_vertex 
-		  (cdr neighbors)))))
+
+    (else (map (lambda (x) (if (> (get-dist-list dist_list (vertex x))
+				  (+ (get-dist-list dist_list
+						    cur_vertex)
+				     (get-edge-wt g 
+						  cur_vertex
+						  (vertex x))))
+			     (relax dist_list
+				    cur_vertex
+				    (vertex x)
+				    (get-edge-wt g 
+						 cur_vertex 
+						 (vertex x))))) 
+	       neighbors))))
+
+
+
+;    ((> (get-dist-list dist_list (vertex (car neighbors)))
+;	(+ (get-dist-list dist_list 
+;			  cur_vertex)
+;	   (get-edge-wt g 
+;			cur_vertex 
+;			(vertex (car neighbors)))))
+;     (begin
+;       (relax dist_list 
+;	      cur_vertex 
+;	      (vertex (car neighbors))
+;	      (get-edge-wt g 
+;			   cur_vertex 
+;			   (vertex (car neighbors))))
+;       (update g 
+;	       dist_list
+;	       cur_vertex
+;	       (cdr neighbors))))
+;    (else (update g 
+;		  dist_list 
+;		  cur_vertex 
+;		  (cdr neighbors)))))
 
 
 (define (dijkstra g start end)
@@ -97,8 +114,8 @@
 	    (loop temp_dist_list
 		  (filter (lambda (x) (not (eq? (vertex x) cur_vertex)))
 			  visit_list)
-		  (vertex-dist-list (car (sort temp_dist_list (lambda (x y) (< (temp-val x)
-									       (temp-val y)))))))))))))
+		  (vertex-dist-list (car (sort temp_dist_list (lambda (x y) (< (dist-val x)
+									       (dist-val y)))))))))))))
 
 
 
