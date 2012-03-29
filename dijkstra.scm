@@ -70,30 +70,6 @@
 	       neighbors))))
 
 
-
-;    ((> (get-dist-list dist_list (vertex (car neighbors)))
-;	(+ (get-dist-list dist_list 
-;			  cur_vertex)
-;	   (get-edge-wt g 
-;			cur_vertex 
-;			(vertex (car neighbors)))))
-;     (begin
-;       (relax dist_list 
-;	      cur_vertex 
-;	      (vertex (car neighbors))
-;	      (get-edge-wt g 
-;			   cur_vertex 
-;			   (vertex (car neighbors))))
-;       (update g 
-;	       dist_list
-;	       cur_vertex
-;	       (cdr neighbors))))
-;    (else (update g 
-;		  dist_list 
-;		  cur_vertex 
-;		  (cdr neighbors)))))
-
-
 (define (dijkstra g start end)
   (let loop ((dist_list (make-dist-list (graph-vertices g) start))
 	     (visit_list (graph-vertices g))
