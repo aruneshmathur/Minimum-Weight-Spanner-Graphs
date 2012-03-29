@@ -37,6 +37,15 @@
   (car (cdaddr (cdr edge))))
 
 
+(define (add-edge graph u v w)
+  (let loop ((edges (graph-edges graph)))
+    (if (eq? (cdr edges) '())
+      (set-cdr! edges (list (make-edge (make-vertex u)
+				       (make-vertex v)
+				       (make-edge-wt w))))
+      (loop (cdr edges)))))
+
+
 (define (vertex-neighbors graph vertex)
   (let loop ((edges (graph-edges graph))
              (result '()))
