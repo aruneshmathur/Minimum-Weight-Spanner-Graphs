@@ -39,11 +39,15 @@
 
 (define (add-edge graph u v w)
   (let loop ((edges (graph-edges graph)))
-    (if (eq? (cdr edges) '())
-      (set-cdr! edges (list (make-edge (make-vertex u)
-				       (make-vertex v)
-				       (make-edge-wt w))))
-      (loop (cdr edges)))))
+    (cond
+      ((eq? edges '()) (append! edges (list (make-edge (make-vertex u)
+				                    (make-vertex v)
+					            (make-edge-wt w)))))
+      ((eq? (cdr edges) '())
+       (set-cdr! edges (list (make-edge (make-vertex u)
+					(make-vertex v)
+					(make-edge-wt w)))))
+      (else (loop (cdr edges))))))
 
 
 (define (vertex-neighbors graph vertex)
