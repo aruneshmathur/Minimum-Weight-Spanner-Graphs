@@ -83,8 +83,9 @@
 	  (update g
 		  dist_list 
 		  cur_vertex 
-		  (filter (lambda (x) (member (vertex x) (vertex-neighbors g
-								  cur_vertex)))
+		  (filter (lambda (x) (member (vertex x) 
+					      (vertex-neighbors g
+								cur_vertex)))
 			  visit_list))
 	  (let ((temp_dist_list (filter (lambda (x) (not (eq? (vertex-dist-list x) cur_vertex)))
 					dist_list)))
@@ -92,7 +93,8 @@
 	    (loop temp_dist_list
 		  (filter (lambda (x) (not (eq? (vertex x) cur_vertex)))
 			  visit_list)
-		  (vertex-dist-list (car (sort temp_dist_list (lambda (x y) (< (dist-val x)
+		  (vertex-dist-list (car (sort temp_dist_list 
+					       (lambda (x y) (< (dist-val x)
 									       (dist-val y)))))))))))))
 
 
