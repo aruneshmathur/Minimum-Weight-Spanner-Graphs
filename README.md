@@ -1,3 +1,6 @@
-An implementation of the Minimum Weight Spanner Graph algorithm in Scheme.
+Minimum Weight Spanner Graphs
+=============================
 
--- Arunesh Mathur
+An implementation of the greedy Minimum Weight Spanner Graph algorithm in Scheme. 
+
+Read about spanner graphs here: http://en.wikipedia.org/wiki/Graph_spanner#Distance
