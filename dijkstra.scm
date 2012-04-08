@@ -1,5 +1,7 @@
 (load "graph.scm")
 
+(define infinity 9999999999999999)
+
 (define dist-val cadadr)
 
 
@@ -16,7 +18,7 @@
      (cons (list (car vertices) (list 'd 0))
 	   (make-dist-list (cdr vertices)
 			   start)))
-    (else (cons (list (car vertices) (list 'd 9999))
+    (else (cons (list (car vertices) (list 'd infinity))
 		(make-dist-list (cdr vertices)
 				start)))))
 
