@@ -59,10 +59,6 @@
            (loop (cdr edges)
                  (cons (edge-to (car edges))
                        result)))
-          ;((equal? (edge-to (car edges)) vertex)
-          ; (loop (cdr edges)
-          ;       (cons (edge-from (car edges))
-          ;             result)))
           (else
            (loop (cdr edges)
                  result)))))
