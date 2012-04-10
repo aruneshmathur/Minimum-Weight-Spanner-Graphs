@@ -84,6 +84,18 @@
          (cons (car lst)
                (remove-duplicates (cdr lst))))))
 
+(define (remove-edge edges v1 v2)
+  (cond 
+    ((null? edges) '())
+    ((or (and (eq? (edge-from (car edges)) v1)
+	      (eq? (edge-to (car edges)) v2))
+	 (and (eq? (edge-from (car edges)) v2)
+	      (eq? (edge-to (car edges)) v1)))
+     (remove-edge (cdr edges) v1 v2))
+    (else 
+      (cons (car edges) (remove-edge (cdr edges) v1 v2)))))
+	  
+
 
 (define (build-graph vertices edges)
   (make-graph (map make-vertex vertices)
@@ -92,4 +104,5 @@
                                 (make-vertex (cadr edge-descp))
 				(make-edge-wt (caddr edge-descp))))
                    edges)))
+
 
