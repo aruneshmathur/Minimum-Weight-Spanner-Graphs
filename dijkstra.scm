@@ -77,6 +77,7 @@
 	     (visit_list (graph-vertices g))
 	     (cur_vertex start))
 
+
     (cond 
       ((eq? cur_vertex end) (get-dist-list dist_list cur_vertex))
       ((null? dist_list) (error "Something has horribly gone wrong"))
@@ -97,7 +98,7 @@
 			  visit_list)
 		  (vertex-dist-list (car (sort temp_dist_list 
 					       (lambda (x y) (< (dist-val x)
-									       (dist-val y)))))))))))))
+								(dist-val y)))))))))))))
 
 
 
